@@ -28,11 +28,22 @@ class Member:
     def show_information(self):
         print(f"Member Name: {self.name} /// ID: {self.ID} /// Borrowed List: {self.borrowed_list}")
 
-class Library():
+class Library:
     def __init__(self):
         self.all_books = []
-        self.all_member = []
+        self.all_members = []
     def book_register(self, book_object):
         self.all_books.append(book_object)
     def Member_register(self, member_object):
-        self.all_member.append(member_object)
+        self.all_members.append(member_object)
+    def book_research(self, isbn):
+        for book in self.all_books:
+            if book.ISBN ==  isbn:
+                return book
+        return None
+    def member_research(self, id):
+        for member in self.all_members:
+            if member.ID ==  id:
+                return member
+        return None
+
