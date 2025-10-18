@@ -28,5 +28,11 @@ class Member:
     def show_information(self):
         print(f"Member Name: {self.name} /// ID: {self.ID} /// Borrowed List: {self.borrowed_list}")
 
-class Library:
-    pass
+class Library():
+    def __init__(self):
+        self.all_books = []
+        self.all_member = []
+    def book_register(self, book_object):
+        self.all_books.append(book_object)
+    def Member_register(self, member_object):
+        self.all_member.append(member_object)
