@@ -18,15 +18,15 @@ class Book:
     def get_refund(self):
         self.duration = "available"
 
+class Member:
+    def __init__(self, name):
+        self.name = name
+        self.ID = self.ID_Calculator()
+        self.borrowed_list = []
+    def ID_Calculator(self):
+        return str(random.randint(100000000,999999999))
+    def show_information(self):
+        print(f"Member Name: {self.name} /// ID: {self.ID} /// Borrowed List: {self.borrowed_list}")
 
-b1 = Book("Suç ve Ceza", "Dostoyevski")
-
-b1.show_information()
-
-b1.borrow()
-
-b1.show_information()
-
-b1.get_refund()
-
-b1.show_information()
+class Library:
+    pass
