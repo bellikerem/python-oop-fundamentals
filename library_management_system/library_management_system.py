@@ -47,3 +47,28 @@ class Library:
                 return member
         return None
 
+    def book_borrow(self, isbn, id):
+        book = self.book_research(isbn)
+        member = self.member_research(id)
+        if (member is None) or (book is None):
+            print("Member or Book has not found")
+        else:
+            if book.duration == "available":
+                book.borrow()
+                member.borrowed_list.append(book.name)
+                print(f"Success. {book.name} has been borrowed by {member.name}")
+            else:
+                print(f"{book.name} has already been borrowed")
+    
+    def book_get_refund(self, isbn, id):
+        book = self.book_research(isbn)
+        member = self.member_research(id)
+        if (member is None) or (book is None):
+            print("Member or Book has not found")
+        else:
+            if book.duration != "available":
+                book.get_refund()
+                member.borrowed_list.remove(book.name)
+                print(f"Success. {book.name} has been refund by {member.name}")
+            else:
+                print(f"{book.name} has already been refund")
