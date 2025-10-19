@@ -1,4 +1,6 @@
 import random
+import string
+
 
 class Book:
     def __init__(self, name, writer):
@@ -72,3 +74,89 @@ class Library:
                 print(f"Success. {book.name} has been refund by {member.name}")
             else:
                 print(f"{book.name} has already been refund")
+    def show_all_members(self):
+        print("\n--- ALL MEMBERS ---")
+        for i in self.all_members:
+            Member.show_information(i)
+    def show_all_books(self):
+        print("\n--- ALL BOOKS ---")
+        for i in self.all_books:
+            Book.show_information(i)
+
+
+def check_string(prompt):
+    while True:
+        string_input = input(prompt)
+        if not string_input.strip():
+            print("Please do not leave blank.")
+            continue
+        
+        if string_input.isdigit(): 
+            print("The name cannot consist of numbers only. Please enter a name.")
+            continue
+
+        return string_input.strip()
+
+
+my_library = Library()
+
+book1 = Book("The Call of Wild", "Jack London")
+book2 = Book("The Miser", "Moliere")
+member1 = Member("Steve")
+member2 = Member("Richards")
+
+my_library.book_register(book1)
+my_library.book_register(book2)
+my_library.Member_register(member1)
+my_library.Member_register(member2)
+
+
+print("\n--- WELCOME TO OOP ACADEMY LİBRARY ---")
+while True:
+    try:
+        print("\n--- MAIN MENU ---")
+        mainmenu_input = input("Press 1 to register as a member\n" \
+        "Press 2 to register as a book\n" \
+        "Press 3 to borrow a book\n" \
+        "Press 4 to refund a book\n" \
+        "Press 5 to quit: ")
+        mainmenu = int(mainmenu_input)
+        if mainmenu not in [1,2,3,4,5]:
+            print("\n--- RESULT ---")
+            print("Please press input a number that you see")
+            continue
+        else:
+            if mainmenu == 1:
+                name_input = check_string("Please input member's name: ")
+                member = Member(name_input)
+                my_library.Member_register(member)
+                print("\n--- RESULT ---")
+                print("Registration completed")
+                member.show_information()
+            elif mainmenu == 2:
+                name_input = check_string("Please input book's name: ")
+                writer_input = check_string("Please input book's writer: ")
+                book = Book(name_input, writer_input)
+                my_library.book_register(book)
+                print("\n--- RESULT ---")
+                print("Registration completed")
+                book.show_information()
+            elif mainmenu == 3:
+                my_library.show_all_members()
+                id_input = str(input("Please input member's id: "))
+                my_library.show_all_books()
+                isbn_input = str(input("Please input book's isbn number: "))
+                print("\n--- RESULT ---")
+                my_library.book_borrow(isbn_input, id_input)
+            elif mainmenu == 4:
+                my_library.show_all_members()
+                id_input = str(input("Please input member's id: "))
+                my_library.show_all_books()
+                isbn_input = str(input("Please input book's isbn number: "))
+                print("\n--- RESULT ---")
+                my_library.book_get_refund(isbn_input, id_input)
+            else:
+                break
+    except ValueError:
+        print("Please input a integer")
+SystemExit
