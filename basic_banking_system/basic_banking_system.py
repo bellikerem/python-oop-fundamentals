@@ -73,9 +73,10 @@ while True:
         print("\n--- MAIN MENU ---")
         mainmenu_input = input("Press 1 to withdraw money\n" \
         "Press 2 to deposit money\n" \
-        "Press 3 to show information: ")
+        "Press 3 to show information\n" \
+        "Press 4 to quit: ")
         mainmenu = int(mainmenu_input)
-        if mainmenu not in [1,2,3]:
+        if mainmenu not in [1,2,3,4]:
             print("\n--- RESULT ---")
             print("Please input a number that you see on the screen")
         elif mainmenu == 1:
@@ -84,8 +85,11 @@ while True:
         elif mainmenu == 2:
             amount = check_integer("Please input an amount: ")
             a1.deposit_money(amount)
-        else:
+        elif mainmenu == 3:
             a1.show_information()
+        else:
+            break
     except ValueError:
         print("\n--- RESULT ---")
         print("Please input an integer")
+SystemExit
